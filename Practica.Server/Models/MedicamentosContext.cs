@@ -11,7 +11,7 @@ namespace Practica.Server.Models
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Estado> Estado { get; set; }
         public DbSet<Presentacion> Presentacion { get; set; }
-        public DbSet<Medicamento> Medicamentos { get; set; }
+        public DbSet<Medicamento> Medicamento { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

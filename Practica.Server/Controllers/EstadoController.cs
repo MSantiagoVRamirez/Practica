@@ -35,8 +35,8 @@ namespace Practica.Server.Controllers
         [Route("ConsultarEstado")]
         public async Task<Estado> ConsultarEstado(int id)
         {
-            var estado = await _context.Estado.FirstOrDefaultAsync(e => e.id == id);
-            return estado;
+            var estadoActual = await _context.Estado.FirstOrDefaultAsync(e => e.id == id);
+            return estadoActual;
         }
         [HttpPut]
         [Route("ActualizarEstado")]
