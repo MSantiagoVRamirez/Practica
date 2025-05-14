@@ -15,5 +15,10 @@ namespace Practica.Server.Models.Medicamentos
         public int estadoPresentacion { get; set; }
         public Estado? EstadoFk { get; set; }
 
+        //Valor calculado
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal valorTotal { get; set; }
+
     }
 }

@@ -28,5 +28,10 @@ namespace Practica.Server.Models.Medicamentos
         public decimal precio { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int stock { get; set; }
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal valor { get; set; }
+        public bool estado { get; set; }
+
     }
 }

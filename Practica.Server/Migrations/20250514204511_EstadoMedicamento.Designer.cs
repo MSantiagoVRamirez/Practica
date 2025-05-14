@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Practica.Server.Models;
 
@@ -10,9 +11,11 @@ using Practica.Server.Models;
 namespace Practica.Server.Migrations
 {
     [DbContext(typeof(MedicamentosContext))]
-    partial class MedicamentosContextModelSnapshot : ModelSnapshot
+    [Migration("20250514204511_EstadoMedicamento")]
+    partial class EstadoMedicamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Practica.Server.Models;
+using Practica.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<MedicamentosContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IPruebaService, PruebaService>();
 
 var app = builder.Build();
 

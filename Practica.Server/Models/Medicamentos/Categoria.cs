@@ -14,5 +14,6 @@ namespace Practica.Server.Models.Medicamentos
         [ForeignKey("Estado")]
         public int estadoCategoria { get; set; }
         public Estado? EstadoFk { get; set; }
+    
     }
 }

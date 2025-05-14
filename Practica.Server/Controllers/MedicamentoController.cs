@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Practica.Server.Models;
 using Practica.Server.Models.Medicamentos;
+using Practica.Server.Services;
 
 namespace Practica.Server.Controllers
 {
@@ -11,28 +12,35 @@ namespace Practica.Server.Controllers
     public class MedicamentoController : ControllerBase
     {
         private readonly MedicamentosContext _context;
-        public MedicamentoController ( MedicamentosContext context)
+        private readonly IPruebaService _pruebaService;
+        public MedicamentoController ( MedicamentosContext context, IPruebaService pruebaService)
         {
             _context = context;
-        }
+            _pruebaService = pruebaService;
 
+        }
 
         [HttpPost]
         [Route("InsertarMedicamentos")]
         public async Task <IActionResult> InsertarMedicamento(Medicamento medicamento)
         {
+            var presentacion = await _context.Presentacion.FirstOrDefaultAsync(p => p.id == medicamento.presentacionId);
+            if (presentacion == null)
+            {
+                return BadRequest("La presentación no existe");
+            }
+            var suma = await _pruebaService.sumaEstados();
             await _context.Medicamento.AddAsync(medicamento);
             await _context.SaveChangesAsync();
             return Ok();
-
         }
         [HttpGet]
         [Route("ListarMedicamentos")]
         public async Task <List<Medicamento>> ListarMedicamentos()
         {
             var medicamentoLista = await _context.Medicamento
-                .Include(m => m.categoriaId)
-                .Include(m => m.presentacionId)
+                .Include(m => m.CategoriaFk)
+                .Include(m => m.PresentacionfK)
                 .ToListAsync();
                 return medicamentoLista;
 
@@ -84,8 +92,6 @@ namespace Practica.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
-
-
 
 
 
